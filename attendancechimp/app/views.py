@@ -42,7 +42,7 @@ def time_view(request):
 
 
 def sum_view(request):
-    """Return the numeric sum of the n1 and n2 query parameters."""
+    """Return the sum of the n1 and n2 query parameters as plain text."""
 
     try:
         total = float(request.GET["n1"]) + float(request.GET["n2"])
@@ -55,7 +55,7 @@ def sum_view(request):
     if total.is_integer():
         total = int(total)
 
-    return JsonResponse({"sum": total})
+    return HttpResponse(str(total), content_type="text/plain")
 
 
 
