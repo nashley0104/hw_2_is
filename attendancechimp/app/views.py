@@ -34,6 +34,30 @@ def index(request):
     return render(request, 'app/index.html', context)
 
 
+def time_view(request):
+    """Return the current time in Chicago as 24-hour HH:MM text."""
+
+    current_time = datetime.now(CDT).strftime("%H:%M")
+    return HttpResponse(current_time, content_type="text/plain")
+
+
+def sum_view(request):
+    """Return the numeric sum of the n1 and n2 query parameters."""
+
+    try:
+        total = float(request.GET["n1"]) + float(request.GET["n2"])
+    except (KeyError, ValueError):
+        return JsonResponse(
+            {"error": "n1 and n2 must both be numbers"},
+            status=400,
+        )
+
+    if total.is_integer():
+        total = int(total)
+
+    return JsonResponse({"sum": total})
+
+
 
 # ---------------------------------------------------------------------------
 # HW4  — user creation

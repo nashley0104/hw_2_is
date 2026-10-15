@@ -1,0 +1,14 @@
+# Local Django data
+attendancechimp/db.sqlite3
+
+# Python virtual environments
+venv/
+.venv/
+venv-*/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# macOS metadata
+.DS_Store
